@@ -317,7 +317,8 @@ var startAudio = function(currentTime, fromCache, onsuccess) {
 				break;
 			case 'noteOn':
 				if (channel.mute) break;
-				note = event.noteNumber - (midi.MIDIOffset || 0);
+				// Transpose midi note
+				note = event.noteNumber = event.noteNumber - (midi.MIDIOffset || 0);
 				eventQueue.push({
 				    event: event,
 				    time: queueTime,
@@ -328,7 +329,8 @@ var startAudio = function(currentTime, fromCache, onsuccess) {
 				break;
 			case 'noteOff':
 				if (channel.mute) break;
-				note = event.noteNumber - (midi.MIDIOffset || 0);
+				// Transpose midi note
+				note = event.noteNumber = event.noteNumber - (midi.MIDIOffset || 0);
 				eventQueue.push({
 				    event: event,
 				    time: queueTime,
